@@ -18,7 +18,7 @@ class ChatRequest(BaseModel):
 
 
 @app.get("/")
-async def ollamabrideg_healthcheck():
+async def ollamabridge_healthcheck():
     return {
         "message": "OllamaBridge is running properly."
     }
