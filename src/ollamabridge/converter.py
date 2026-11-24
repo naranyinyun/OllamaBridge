@@ -30,3 +30,21 @@ def get_content(data):
         },
         "done": True,
     }
+
+def get_content_stream(data):
+    choices = data.get("choices") or []
+    if not choices:
+        return None
+
+    choice = choices[0]
+    delta = choice.get("delta") or {}
+    finish_reason = choice.get("finish_reason")
+
+    return {
+        "model": data.get("model"),
+        "message": {
+            "role": "assistant",
+            "content": delta.get("content") or "",
+        },
+        "done": finish_reason is not None,
+    }
